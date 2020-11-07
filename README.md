@@ -7,3 +7,5 @@ With some custom stuff installed:
 https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops
 
 https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7
+
+https://podman.io/getting-started/installation
