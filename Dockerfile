@@ -22,7 +22,7 @@ RUN apt-get update \
 
 #powershell https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7
 RUN apt-get install -y wget apt-transport-https \
-&& wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb \
+&& wget -q https://packages.microsoft.com/config/ubuntu/${VERSION_ID}/packages-microsoft-prod.deb \
 && dpkg -i packages-microsoft-prod.deb \
 && apt-get install -y software-properties-common \       
 && apt-get update \
@@ -35,6 +35,15 @@ RUN echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontai
 && apt-get update \
 && apt-get -y upgrade \
 && apt-get -y install podman
+
+#dotnet https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu
+#core 3.1 
+RUN wget https://packages.microsoft.com/config/ubuntu/${VERSION_ID}/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+&& dpkg -i packages-microsoft-prod.deb \
+&& apt-get update \
+&& apt-get install -y apt-transport-https \
+&& apt-get update \
+&& apt-get install -y dotnet-sdk-3.1
 
 WORKDIR /azp
 
