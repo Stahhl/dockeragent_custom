@@ -29,12 +29,31 @@ RUN apt-get install -y wget apt-transport-https \
 && add-apt-repository universe \
 && apt-get install -y powershell
 
-#podman https://podman.io/getting-started/installation
-RUN echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" | tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list \
-&& curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key | apt-key add - \
+# #podman https://podman.io/getting-started/installation
+# RUN echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" | tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list \
+# && curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key | apt-key add - \
+# && apt-get update \
+# && apt-get -y upgrade \
+# && apt-get -y install podman \
+# && apt-get -y install podman-docker
+
+#docker https://docs.docker.com/engine/install/ubuntu/#install-docker-engine
+RUN apt-get remove docker docker-engine docker.io containerd runc \
+&& apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common \
+&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -\  
+&& add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable" \ 
 && apt-get update \
-&& apt-get -y upgrade \
-&& apt-get -y install podman
+&& apt-get install -y docker-ce \
+&& apt-get install -y docker-ce-cli \
+&& apt-get install containerd.io
 
 #dotnet https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu
 #core 3.1 

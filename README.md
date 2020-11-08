@@ -2,8 +2,10 @@ Dockerfile and start script for self-hosted azure devops agent in Docker.
 
 With some custom stuff installed:
 - Powershell Core
-- Podman
+- docker
 - dotnet core sdk 3.1
+
+docker run -v /var/run/docker.sock:/var/run/docker.sock -e AZP_URL=<URL> -e AZP_TOKEN=<TOKEN> -e AZP_POOL=<poolName> -e AZP_AGENT_NAME=<agentName> <imageName>:<tag>
 
 https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops
 
